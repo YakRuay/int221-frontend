@@ -3,6 +3,6 @@ services:
       build: .
       image: shoes-shopping:dev
       ports:
-        - "8080:8080"
+        - "8080:80"
       environment:
         SERVICE_VERSION: v1
