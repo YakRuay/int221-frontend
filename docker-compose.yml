@@ -1,5 +1,5 @@
 services:
-    shoes:
+    frontend:
       build: .
       image: shoes-frontend:dev
       ports:
