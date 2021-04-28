@@ -1,7 +1,7 @@
 services:
     shoes:
       build: .
-      image: shoes-shopping:dev
+      image: shoes-frontend:dev
       ports:
         - "8080:80"
       environment:
