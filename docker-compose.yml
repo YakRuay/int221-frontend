@@ -1,8 +1,6 @@
 services:
     frontend:
-      build: .
-      image: shoes-frontend:dev
-      ports:
-        - "8080:80"
-      environment:
-        SERVICE_VERSION: v1
+        build: .
+        image: shoes-frontend:dev
+        environment:
+            SERVICE_VERSION: v1
