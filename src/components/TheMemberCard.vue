@@ -2,7 +2,7 @@
   <div class="flex justify-center w-screen">
     <div class="widthOfCards flex flex-row py-10 b">
       <!-- lg:px-10 md:px-10 px-5 lg:px-56 md:px-44 w-7/12-->
-      <div class="memberCards flex justify-between w-full bg-pink-300">
+      <div class="memberCards flex justify-between w-full">
         <slot></slot>
       </div>
     </div>

@@ -8,26 +8,31 @@
   <h1 id="slogan">
     " Thinking of <b>Sandals</b>, Thinking of <b>YakRuay</b> "
   </h1>
-  <p class="lg:px-44 md:px-20 px-10 flex justify-center">
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-    non proident, sunt in culpa qui officia deserunt mollit anim id est
-    laborum."
+  <div class="lg:px-44 md:px-20 px-10 flex justify-center idea">
+  <p>
+    พวกเราเห็นว่าสินค้าที่มีผู้คนให้ความสนใจตลอดเวลามักเป็นสินค้าที่ใช้ในชีวิตประจำวัน
+    พวกเรา <b>"อยากรวย"</b> จึงเลือกขายสินค้าเป็นรองเท้า
+    ที่ไม่ได้เป็นเพียงรองเท้าธรรมดา แต่เป็น <b>รองเท้าแตะ </b>
+    เพราะสามารถสวมใส่ไปได้ทุกที่ทุกเวลา ใส่ได้สะดวกสบายที่สุดและเป็นรองเท้า
+    ประเภทที่คู่ใจที่สุดไม่ว่าจะเนื่องในโอกาสไหนก็ตาม
   </p>
- 
-  <p class="lg:px-44 md:px-20 px-10 py-10 flex justify-center text-center text-xl text-yellow-500">
-    <b>
-      เล่าความเป็นมาทำไมเรามาเลือกขายรองเท้าจนมาเป็น YakRuay
-       <br /> // ไว้ค่อยคิดคอนเทนต์แล้วเขียนให้ ป.ล. heading นี้ทำหน้าระเบิด แต่ Final Version จะเอาออก
-    </b>
-  </p>
+  </div>
 </template>
 
 <style scoped>
+@media (max-width: 1023px) {
+  p {
+    line-height: 2.15rem;
+  padding-bottom: 10%;
+  font-size: larger;
+  font-family: "Prompt", sans-serif;
+
+}
+
+}
+
 p {
+  font-size: larger;
   font-family: "Prompt", sans-serif;
 }
 img {
