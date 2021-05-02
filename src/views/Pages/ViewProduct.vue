@@ -4,3 +4,13 @@
 
 </template>
 
+<script>
+import TheSecNavbar from '@/components/TheSecNavbar.vue'
+
+export default {
+  components: {
+    TheSecNavbar
+  }
+};
+</script>
+

@@ -13,6 +13,8 @@
 
 <style>
 body {
+  overflow-x: hidden; 
+  max-width: 100vw;
   font-family: "Prompt", sans-serif;
 }
 /* h1 {

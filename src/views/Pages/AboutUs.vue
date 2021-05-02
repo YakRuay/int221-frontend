@@ -1,7 +1,7 @@
 <template class="w-screen h-screen">
   <title>YakRuay - Sandals Store</title>
   <img
-    src="@/assets/Related-imgs/format-footwears.jpg"
+    src="@/assets/AboutUsImg/format-footwears.jpg"
     class="max-h-96 lg:max-h-auto"
     alt="YakRuay Sandals Store"
   />
@@ -25,10 +25,6 @@
     </b>
   </p>
 </template>
-
-<script>
-export default {};
-</script>
 
 <style scoped>
 p {

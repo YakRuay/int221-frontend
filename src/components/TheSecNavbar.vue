@@ -11,6 +11,7 @@
 </template>
 
 <style scoped>
+
 .sec-navbar-container {
   min-width: 100vw;
   overflow: hidden;
