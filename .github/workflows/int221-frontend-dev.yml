@@ -32,12 +32,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Login with azure CLI
-      uses: azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-    - name: Execute SSH commmands on remote server
+    - name: Execute deploy SSH commmands on remote server
       uses: JimCronqvist/action-ssh@master
       with:
         hosts: 'rew@52.187.108.86'
@@ -49,7 +44,3 @@ jobs:
           docker pull ghcr.io/yakruay/int221-frontend:dev
           docker-compose down
           docker-compose up -d
-
-    - name: Azure logout
-      run: |
-        az logout
