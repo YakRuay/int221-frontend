@@ -39,7 +39,7 @@ jobs:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
     - name: Run a deployScript.sh file
-      runs:
+      run:
           chmod +x $GITHUB_WORKSPACE/deployScript.sh
           $GITHUB_WORKSPACE/deployScript.sh
 
