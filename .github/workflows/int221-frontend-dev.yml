@@ -38,11 +38,14 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-    - name: Deploy with Azure App Service
-      uses: azure/webapps-deploy@v2
+    - name: Azure CLI script file
+      uses: azure/CLI@v1
       with:
-        app-name: 'sandalsshop-frontend'
-        images: 'ghcr.io/yakruay/int221-frontend:dev'
+        azcliversion: 2.0.72
+        inlineScript: |
+          docker pull ghcr.io/yakruay/int221-frontend:dev
+          docker-compose down
+          docker-compose up -d
 
     - name: Azure logout
       run: |
