@@ -43,7 +43,7 @@ jobs:
         hosts: 'rew@52.187.108.86'
         privateKey: ${{ secrets.PRIVATE_KEY }}
         command: |
-          cd $GITHUB_WORKSPACE
+          cd int221-frontend
           git checkout dev
           git pull
           docker pull ghcr.io/yakruay/int221-frontend:dev
