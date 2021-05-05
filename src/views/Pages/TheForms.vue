@@ -1,12 +1,15 @@
 <template >
-  <h1>This is our Forms page</h1>
-  <div class="bg-yellow-500 p-3 flex justify-center w-screen">
-    <form class="for-forms bg-green-300">
-      <label for="product_name">PRODUCT NAME</label>
-      <input type="text" id="product-name" name="product_name" placeholder="PRODUCT NAME" />
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-      <label for="manu_date">MANUFACTURER DATE</label>
-      <input type="date" id="manu-date" name="manu_date"/>
+
+  <h1>This is our Forms page</h1>
+  <div class="p-3 flex justify-center w-screen bg-red-300">
+    <form class="for-forms bg-yellow-300">
+      <label for="product-name">PRODUCT NAME</label>
+      <input type="text" id="product-name" name="product-name" placeholder="PRODUCT NAME" />
+
+      <label for="manu-date">MANUFACTURER DATE</label>
+      <input type="date" id="manu-date" name="manu-date"/>
 
       <label for="desc">PRODUCT DESCRIPTION</label>
       <textarea type="text" id="desc" name="desc" placeholder="PRODUCT DESCRIPTION"/>
@@ -18,31 +21,40 @@
         <option value="FILA"> FILA </option>
     </select>
 
-
-      <label for="product_img">Image</label>
-      <input type="file" id="product-img" name="product_img" placeholder="Click here to upload image" />
-
-      <label for="lname">COLORS</label>
-      <input type="color" id="colors" name="colors" />
-
-      <label for="price">PRICE</label>
-     <input type="number" id="price" name="price" min="1" />
-
-      <label for="warranty">WARRANTY</label>
-      <input type="text" id="warranty" name="warranty" />
-
-     <div class="flex flex-col justify-start">
-      <span class="radio-check-words"> BRAND </span>
-      
-      <input type="radio" id="adidas" name="brand" value="ADIDAS" class="radio-tick">
-      <label for="adidas"> ADIDAS </label>
-      <input type="radio" id="crocs" name="brand" value="CROCS" class="radio-tick">
-      <label for="crocs"> CROCS </label>
-      <input type="radio" id="fila" name="brand" value="FILA" class="radio-tick">
-      <label for="fila"> FILA </label>
+      <div class="image-upload">
+        <label for="product-img">Image
+       <img src="@/assets/FormsImg/add-image.png" id="upload-pic"></label>
+        <input type="file" id="product-img" name="product-img"/>
+        <span id="click-here"> Click To Upload an Image. </span>
       </div>
+      
+      <label for="colors">COLORS</label>
+      <input type="radio" id="black" name="colors" value="black" />
+      <input type="radio" id="whiite" name="colors" value="white"/>
+      <input type="radio" id="brownish" name="colors" value="brownish"/>
+      <input type="radio" id="green" name="colors" value="green"/>
+      <input type="radio" id="cardinal" name="colors" value="cardinal"/>
+      <input type="radio" id="rhino" name="colors" value="rhino"/>
 
-      <input type="submit" value="Submit" />
+
+    <label for="price">PRICE</label>
+    <input type="number" id="price" name="price" min="1" placeholder="PRICE" />
+
+    
+      <label>WARRANTY</label>
+    <div class="WARRANTY-BOX flex flex-col p-7 pt-0">
+      <div>
+      <input type="radio" id="none" name="warranty" value="none"/>
+      <label for="none" class="warranty-class"> none </label></div>
+      <div>
+      <input type="radio" id="7days" name="warranty" value="7days"/>
+      <label for="7days" class="warranty-class"> 7days </label></div>
+      <div>
+      <input type="radio" id="14days" name="warranty" value="14days"/>
+      <label for="14days" class="warranty-class"> 14days </label></div>
+   </div>
+
+      <input type="submit" value="Save" class="justify-self-end"/>
     </form>
   </div>
 </template>
@@ -53,11 +65,15 @@ export default {};
 
 <style scoped>
 /* input IDs */
+#product-name,#manu-date,#desc,#price{
+  width:100%;
+}
+
 label{
   font-weight:bold;
   font-family: "Prompt", sans-serif;
   display: block;
-  padding: 5% 1% 1% 0%;
+  padding: 8% 1% 1% 0%;
 
 }
 
@@ -67,7 +83,7 @@ label{
 
 @media (min-width: 1024px) {
   .for-forms {
-    width: 37%;
+    width: 30%;
   }
 }
 
@@ -97,4 +113,38 @@ textarea{
 h1 {
   text-align: center;
 }
+
+.image-upload > input
+{
+    display: none;
+}
+
+.image-upload img
+{
+    width: 80px;
+    cursor: pointer;
+}
+
+#upload-pic{
+  background-color: darkslategray;
+  border: 1px solid darkslategray;
+  box-sizing: border-box;
+  border-radius: 20px;
+  padding: 3%;
+  margin: 3% 0% 1% 3%;
+}
+
+#click-here{
+  padding-left:3% ;
+  font-weight: normal;
+  font-family: "Prompt", sans-serif;
+}
+
+.warranty-class{
+  padding: 1%;
+  margin: 2%;
+  display: contents;
+  font-weight: normal;
+}
+
 </style>
