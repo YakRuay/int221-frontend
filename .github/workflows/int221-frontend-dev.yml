@@ -38,10 +38,12 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
+    - run: git checkout dev
     - run: git pull
-    - run: sudo docker pull ghcr.io/yakruay/int221-frontend:dev
-    - run: sudo docker-compose down
-    - run: sudo docker-compose up -d
+    - run: echo ${USER}
+    - run: docker pull ghcr.io/yakruay/int221-frontend:dev
+    - run: docker-compose down
+    - run: docker-compose up -d
 
     - name: Azure logout
       run: |
