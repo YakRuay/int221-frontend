@@ -40,8 +40,10 @@ jobs:
 
     - name: Run a deployScript.sh file
       run:
-          chmod +x $GITHUB_WORKSPACE/deployScript.sh
-          $GITHUB_WORKSPACE/deployScript.sh
+          git pull
+          docker pull ghcr.io/yakruay/int221-frontend:dev
+          docker-compose down
+          docker-compose up -d
 
     - name: Azure logout
       run: |
