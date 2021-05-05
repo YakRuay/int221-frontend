@@ -1,7 +1,7 @@
 services:
     frontend:
         build: .
-        image: ghcr.io/rewbuglag/int221-frontend:dev
+        image: ghcr.io/yakruay/int221-frontend:dev
         environment:
             SERVICE_VERSION: v1
 networks:
