@@ -38,17 +38,17 @@ jobs:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
     - name: Execute SSH commmands on remote server
-        uses: JimCronqvist/action-ssh@master
-        with:
-          hosts: 'rew@52.187.108.86'
-          privateKey: ${{ secrets.PRIVATE_KEY }}
-          command: |
-            cd $GITHUB_WORKSPACE
-            git checkout dev
-            git pull
-            docker pull ghcr.io/yakruay/int221-frontend:dev
-            docker-compose down
-            docker-compose up -d
+      uses: JimCronqvist/action-ssh@master
+      with:
+        hosts: 'rew@52.187.108.86'
+        privateKey: ${{ secrets.PRIVATE_KEY }}
+        command: |
+          cd $GITHUB_WORKSPACE
+          git checkout dev
+          git pull
+          docker pull ghcr.io/yakruay/int221-frontend:dev
+          docker-compose down
+          docker-compose up -d
 
     - name: Azure logout
       run: |
