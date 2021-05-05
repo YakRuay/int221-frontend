@@ -43,9 +43,8 @@ jobs:
       with:
         azcliversion: 2.0.72
         inlineScript: |
-          docker pull ghcr.io/yakruay/int221-frontend:dev
-          docker-compose down
-          docker-compose up -d
+          chmod +x $GITHUB_WORKSPACE/deployScript.sh
+          $GITHUB_WORKSPACE/deployScript.sh
 
     - name: Azure logout
       run: |
