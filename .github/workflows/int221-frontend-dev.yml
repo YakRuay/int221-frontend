@@ -33,16 +33,17 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: get-credentials
+    - name: Login with azure CLI
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-    - name: deloy
-      uses: azure/aci-deploy@v1
+    - name: Deploy with Azure App Service
+      uses: azure/webapps-deploy@v2
       with:
-        resource-group: INT221_PROJECT
-        dns-name-label: ${{ secrets.RESOURCE_GROUP }}${{ github.run_number }}
-        image: ghcr.io/yakruay/int221-frontend:dev
-        name: int221-frontend
-        location: 'Southeast Asia'
+        app-name: 'sandalsshop-frontend'
+        images: 'ghcr.io/yakruay/int221-frontend:dev'
+
+    - name: Azure logout
+      run: |
+        az logout
