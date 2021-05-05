@@ -1,0 +1,49 @@
+name: int221-frontend-dev
+
+on:
+  push:
+    branches;
+      - dev
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    
+    - name: Login to Github Docker Registry
+      uses: docker/login-action@v1
+      with:
+        registry: ghcr.io
+        username: ${{ github.repository_owner }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Build and push
+      uses: docker/build-push-action@v2
+      with:
+        push: true
+        tags: ghcr.io/yakruay/int221-frontend:dev
+
+  deploy:
+    needs: build
+    runs-on:ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: get-credentials
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: deloy
+      uses: azure/aci-deploy@v1
+      with:
+        resource-group: INT221_PROJECT
+        dns-name-label: ${{ secrets.RESOURCE_GROUP }}${{ github.run_number }}
+        image: ghcr.io/yakruay/int221-frontend:dev
+        name: int221-frontend
+        location: 'Southeast Asia'

@@ -1,30 +1,27 @@
-<template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+<template class="w-screen h-screen">
+  <title>YakRuay - Sandals Store</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet"
+  />
+  <div id="navBar">
+    <base-main-navbar></base-main-navbar>
+    <router-view />
   </div>
-  <router-view/>
 </template>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+body {
+  overflow-x: hidden; 
+  max-width: 100vw;
+  font-family: "Prompt", sans-serif;
 }
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
+/* h1 {
+  padding: 3rem;
   font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
+  font-family: "Prompt", sans-serif;
+  color: brown;
+  text-align: center;
+} */
 </style>
