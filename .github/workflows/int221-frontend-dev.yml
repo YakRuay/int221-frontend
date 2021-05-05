@@ -1,8 +1,7 @@
 name: int221-frontend-dev
-
 on:
   push:
-    branches;
+    branches:
       - dev
 
 jobs:
