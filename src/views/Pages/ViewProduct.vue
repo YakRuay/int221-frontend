@@ -1,19 +1,18 @@
 <template>
-    <the-sec-navbar></the-sec-navbar>
-    <h1 class="text-red-500"> ### This is View Product Page</h1>
-    <the-forms></the-forms>
+  <h1>this is from new ViewProduct.vue</h1>
 
+  <a href="TheForms.vue" class="bg-red-400 flex justify-self-center"> Edit Product</a>
 </template>
 
 <script>
-import TheSecNavbar from '@/components/TheSecNavbar.vue'
-import TheForms from '@/views/Pages/TheForms.vue'
-
 export default {
-  components: {
-    TheSecNavbar,
-    TheForms
-  }
-};
+
+}
 </script>
 
+<style scoped>
+h1{
+    text-align: center;
+    color: maroon;
+}
+</style>
