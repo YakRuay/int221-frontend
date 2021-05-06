@@ -324,7 +324,7 @@ h1 {
   width: 90vw;
   padding-bottom: 15%;
 }
-label{
+label,span{
   font-size: 0.875rem;
   line-height: 1.25rem;
 }
