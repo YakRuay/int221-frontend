@@ -14,7 +14,7 @@
       <label for="desc">PRODUCT DESCRIPTION</label>
       <textarea type="text" id="desc" name="desc" placeholder="PRODUCT DESCRIPTION"/>
 
-      <label for="brand"> BRAND </label>
+      <label for="brand" class="brand-heading"> BRAND </label>
       <select name="brand" id="brand">
         <option value="ADIDAS"> ADIDAS </option>
         <option value="CROCS"> CROCS </option>
@@ -30,7 +30,7 @@
       
       <div class="flex flex-col p-3 pl-0">
       <span id="colors-heading">COLORS</span>
-      <div class="for nextLine flex flex-row pt-3 pb-0 pl-6 ">
+      <div class="for-nextLine flex flex-row">
         <label class="container">
           <input type="checkbox" id="black" name="colors" value="black"/>
           <span class="checkmark black"></span>
@@ -58,11 +58,11 @@
         </div>
       </div>
 
-    <label for="price">PRICE</label>
+    <label for="price" class="price-heading">PRICE</label>
     <input type="number" id="price" name="price" min="1" placeholder="PRICE" />
 
     
-      <label>WARRANTY</label>
+      <label class="warranty-heading">WARRANTY</label>
     <div class="WARRANTY-BOX flex flex-col p-7 pt-0">
       <div>
       <input type="radio" id="none" name="warranty" value="none"/>
@@ -100,9 +100,13 @@ label{
   font-weight:bold;
   font-family: "Prompt", sans-serif;
   display: block;
-  padding: 8% 1% 1% 0%;
-
+  margin:  8% 1% 1% 0%;
 }
+
+/* .price,.brand{
+  display:inline-block;
+  width: fit-content;
+} */
 
 .for-forms {
   flex-direction: column;
@@ -192,7 +196,7 @@ h1 {
   flex-direction: column;
   display: block;
   position: relative;
-  padding: 0% 0% 0% 0%;
+  padding-left: 0%;
   /* margin-bottom: 12px;  */
   cursor: pointer;
   /* font-size: 22px; */
@@ -200,6 +204,7 @@ h1 {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  margin: 0%;
 }
 
 /* Hide the browser's default checkbox */
@@ -210,6 +215,13 @@ h1 {
   height: 0;
   width: 0;
   padding: 0%;
+}
+
+.for-nextLine{
+  height: 25px;
+  padding-top: 1%;
+  padding-left: 5%;
+  margin: 0%;
 }
 
 /* Create a custom checkbox - per colors*/
