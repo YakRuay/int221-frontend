@@ -95,6 +95,9 @@ export default {};
 #product-name,#manu-date,#desc,#price{
   width:100%;
 }
+#manu-date{
+  color: gray;
+}
 
 label{
   font-weight:bold;
@@ -147,7 +150,7 @@ h1 {
     display:none;
 }
 #product-img{
-  color: cadetblue;
+  color: gray;
   border:1px solid dimgray;
   background-color:whitesmoke;
   width: 70%;
