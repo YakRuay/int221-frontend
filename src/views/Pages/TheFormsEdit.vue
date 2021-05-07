@@ -1,8 +1,10 @@
 <template >
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+ <button class="bg-red-400 p-5" @click="$emit('changecomp', 'view-product')"> "back" </button>
 
 
-  <h1>This is our Forms page <b> TheForms.vue</b></h1>
+
+  <h1>This is our Edit Product page <b> TheFormsEdit.vue</b></h1>
   <div class="p-3 flex justify-center w-screen">
     <form class="for-forms">
       <label for="product-name">PRODUCT NAME</label>

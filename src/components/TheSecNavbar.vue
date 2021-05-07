@@ -3,27 +3,29 @@
     class="bg-white p-5 max-w-md md:text-xl text-sm text-gray-900 flex justify-center sec-navbar-container"
   >
     <div class="md:w-1/5 lg:max-w-md flex justify-center uppercase">
-      <a href="#" @click="setSelectedComponent('view-product')">View&nbsp;Products</a>
-      <a href="#" @click="setSelectedComponent('add-product')" id="AddProduct">Add&nbsp;Product</a>
-      <a href="#" id="EditProduct">Edit&nbsp;Product</a>
-     
+      <button @click="setSelectedComponent('view-product')">View&nbsp;Products</button>
+      <button @click="setSelectedComponent('add-product')" id="AddProduct">Add&nbsp;Product</button>
+      <!-- <a href="#" id="EditProduct">Edit&nbsp;Product</a> -->
+    <button @click="setSelectedComponent('edit-products')" id="EditProducts">Edit&nbsp;Products02</button>
+
     </div>
   </div>
   <keep-alive>
-        <component :is="selectedComponent"></component>
-     </keep-alive>
+        <component :is="selectedComponent" @changecomp="setSelectedComponent"></component>
+  </keep-alive>
 
 </template>
 
 <script>
 import ViewProduct from "../views/Pages/ViewProduct.vue";
 import AddProduct from "../views/Pages/TheForms.vue";
- 
+import EditProducts from "../views/Pages/TheFormsEdit.vue";
  
 export default {
   components: {
     ViewProduct,
     AddProduct,
+    EditProducts,
   },
   data() {
     return {
@@ -45,24 +47,25 @@ export default {
   min-width: 100vw;
   overflow: hidden;
 }
-a {
+button {
+  outline: none;
   font-family: "Prompt", sans-serif;
   padding: 0rem 2rem 0rem 2rem;
-  font-weight: 300;
+  font-weight:normal;
   color: black;
 }
 
-a:hover,a:active {
+button:hover,button:active {
   font-weight: bold;
 }
 
-a:focus {
+button:focus {
   color: black;
-  padding: 0rem 2rem 0rem 2rem;
-  font-weight: 600;
+  /* padding: 0rem 2rem 0rem 2rem; */
+  font-weight:bold;
 }
 
-#EditProduct {
+#EditProducts {
   display: none;
 }
 </style>

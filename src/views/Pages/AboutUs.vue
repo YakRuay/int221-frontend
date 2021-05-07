@@ -6,7 +6,7 @@
     alt="YakRuay Sandals Store"
   />
   <h1 id="slogan">
-    " Thinking of <b>Sandals</b>, Thinking of <b>YakRuay</b> "
+    " Thinking of <b>Sandals</b>, Thinking of <b>SandalsShop</b> "
   </h1>
   <div class="lg:px-44 md:px-20 px-10 flex justify-center idea">
   <p>
