@@ -38,8 +38,8 @@
       <!-- IMAGE -->
       <div class="image-upload">
         <label for="product-img" id="IMAGE-heading"
-          >IMAGE <img src="@/assets/FormsImg/add-image.png" id="upload-pic"
-        /></label>
+          >IMAGE <br/><p class="font-normal">.png only</p><img src="@/assets/FormsImg/add-image.png" id="upload-pic"
+        />  </label>
         <input
           @change="imageHandler"
           type="file"
@@ -126,22 +126,6 @@
         min="1"
         placeholder="PRICE"
       />
-      <!-- WARRANTY -->
-      <!-- <label class="warranty-heading">WARRANTY</label>
-      <div class="WARRANTY-BOX flex flex-col p-7 pt-0">
-        <div>
-          <input type="radio" id="none" name="warranty" value="none" />
-          <label for="none" class="warranty-class"> none </label>
-        </div>
-        <div>
-          <input type="radio" id="7days" name="warranty" value="7days" />
-          <label for="7days" class="warranty-class"> 7 days </label>
-        </div>
-        <div>
-          <input type="radio" id="14days" name="warranty" value="14days" />
-          <label for="14days" class="warranty-class"> 14 days </label>
-        </div>
-      </div> -->
       <!-- SUBMIT -->
       <div class="flex justify-end">
         <input type="submit" value="Save" class="save-button" />
@@ -151,6 +135,8 @@
 </template>
 
 <script>
+    //  >>>>>>>>>> ลองช่วยทำ submitForm ตาม lab อาจารย์เฉย ๆ แต่ทำไม่ได้ ;-;
+      // emits: ['add-product-submit'],
 export default {
   data() {
     return {
@@ -171,27 +157,27 @@ export default {
     validateForm() {
       if (this.product.productName == "") {
         this.productValidate = true;
-        alert("Please enter product name");
+        alert("Please enter PRODUCT NAME.");
       }
       if (this.product.productReleaseDate == "") {
         this.productValidate = true;
-        alert("Please enter MFD");
+        alert("Please enter MANUFACTURER DATE.");
       }
       if (this.product.productDetail == "") {
         this.productValidate = true;
-        alert("Please enter product description");
+        alert("Please enter PRODUCT DESCRIPTION.");
       }
       if (this.product.productBrand == "") {
         this.productValidate = true;
-        alert("Please enter product brand");
+        alert("Please enter PRODUCT BRAND.");
       }
       if (this.product.productImage == "") {
         this.productValidate = true;
-        alert("Please enter upload image");
+        alert("Please Upload an IMAGE.");
       }
       if (this.product.productColor.length == 0) {
         this.productValidate = true;
-        alert("Please enter product color");
+        alert("Please enter PRODUCT COLOR.");
       }
       if (this.productValidate == false) {
         console.log("productValidate: " + this.productValidate);
@@ -201,6 +187,28 @@ export default {
 
     addProduct() {
       console.log("method: addProduct");
+      // 
+      //  >>>>>>>>>> ลองช่วยทำ submitForm ตาม lab อาจารย์เฉย ๆ แต่ทำไม่ได้ ;-;
+      // 
+      // if (!this.productValidate) {
+      //   const newAddProductSubmitted = {
+      //   productName: this.productName,
+      //   productReleaseDate: this.productReleaseDate,
+      //   productDetail: this.productDetail,
+      //   productBrand: this.productBrand,
+      //   productImage: this.productImage,
+      //   productColor: this.productColor,
+      //   productPrice: this.productPrice
+      //   }
+      //  this.productName="",
+      //  this.productReleaseDate="",
+      //  this.productDetail="",
+      //  this.productBrand="",
+      //  this.productImage="",
+      //  this.productColor=[],
+      //  this.productPrice=0,
+      // this.$emit('add-product-submit', newAddProductSubmitted)
+      // }
     },
 
     imageHandler(event) {
@@ -340,12 +348,6 @@ h1 {
   width: 20%;
 }
 
-.warranty-class {
-  padding: 1%;
-  margin: 2%;
-  display: contents;
-  font-weight: normal;
-}
 /* The container */
 .container {
   width: 25px;
@@ -471,6 +473,8 @@ h1 {
 }
 
 .save-button {
+  margin-top: 7%;
+  margin-bottom: 0%;
   width: 75px;
   color: white;
   background: #10b981;
