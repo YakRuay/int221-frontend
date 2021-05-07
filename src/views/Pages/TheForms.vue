@@ -1,5 +1,4 @@
 <template >
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 
   <h1>This is our Forms page <b> TheForms.vue</b></h1>
