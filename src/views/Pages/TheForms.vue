@@ -30,16 +30,18 @@
       />
       <!-- BRAND -->
       <label for="brand" class="brand-heading"> BRAND </label>
-      <select v-model="product.productBrand" name="brand" id="brand">
-        <option value="ADIDAS">ADIDAS</option>
-        <option value="CROCS">CROCS</option>
-        <option value="FILA">FILA</option>
+      <select v-model="brandInput" @click="brandsHandler(brandInput)" name="brand" id="brand">
+        <option value="1">ADIDAS</option>
+        <option value="2">CROCS</option>
+        <option value="3">FILA</option>
       </select>
       <!-- IMAGE -->
       <div class="image-upload">
         <label for="product-img" id="IMAGE-heading"
-          >IMAGE <br/><p class="font-normal">.png only</p><img src="@/assets/FormsImg/add-image.png" id="upload-pic"
-        />  </label>
+          >IMAGE <br />
+          <p class="font-normal">.png only</p>
+          <img src="@/assets/FormsImg/add-image.png" id="upload-pic" />
+        </label>
         <input
           @change="imageHandler"
           type="file"
@@ -135,21 +137,25 @@
 </template>
 
 <script>
-    //  >>>>>>>>>> ลองช่วยทำ submitForm ตาม lab อาจารย์เฉย ๆ แต่ทำไม่ได้ ;-;
-      // emits: ['add-product-submit'],
+import axios from "axios";
+
 export default {
   data() {
     return {
       productValidate: false,
+      brandInput: "",
+      tempBrands: [],
+      tempColors: [],
       product: {
         productName: "",
         productReleaseDate: "",
         productDetail: "",
-        productBrand: "",
-        productImage: "",
-        productColor: [],
+        brandID: "",
+        // productImage: [],
+        colors: [],
         productPrice: 0,
       },
+      productID: 0,
     };
   },
 
@@ -171,11 +177,11 @@ export default {
         this.productValidate = true;
         alert("Please enter PRODUCT BRAND.");
       }
-      if (this.product.productImage == "") {
-        this.productValidate = true;
-        alert("Please Upload an IMAGE.");
-      }
-      if (this.product.productColor.length == 0) {
+      // if (this.product.productImage.length == 0) {
+      //   this.productValidate = true;
+      //   alert("Please Upload an IMAGE.");
+      // }
+      if (this.product.colors.length == 0) {
         this.productValidate = true;
         alert("Please enter PRODUCT COLOR.");
       }
@@ -185,59 +191,85 @@ export default {
       }
     },
 
-    addProduct() {
+    async addProduct() {
       console.log("method: addProduct");
-      // 
-      //  >>>>>>>>>> ลองช่วยทำ submitForm ตาม lab อาจารย์เฉย ๆ แต่ทำไม่ได้ ;-;
-      // 
-      // if (!this.productValidate) {
-      //   const newAddProductSubmitted = {
-      //   productName: this.productName,
-      //   productReleaseDate: this.productReleaseDate,
-      //   productDetail: this.productDetail,
-      //   productBrand: this.productBrand,
-      //   productImage: this.productImage,
-      //   productColor: this.productColor,
-      //   productPrice: this.productPrice
-      //   }
-      //  this.productName="",
-      //  this.productReleaseDate="",
-      //  this.productDetail="",
-      //  this.productBrand="",
-      //  this.productImage="",
-      //  this.productColor=[],
-      //  this.productPrice=0,
-      // this.$emit('add-product-submit', newAddProductSubmitted)
-      // }
+      // formData
+      // const formData = new FormData();
+      // formData.append("product", JSON.stringify(this.product));
+
+      // await fetch("http://52.187.108.86/backend/products/add", {
+      //     method: "POST",
+      //     headers: {
+      //         "content-type": "application/json",
+      //     },
+      //     body: JSON.stringify(this.product),
+      // }).then(response => {
+      //     return response.json()
+      // })
+
+      const json = this.product;
+      console.log(json);
+      const res = await axios.post(
+        "http://52.187.108.86/backend/products/add",
+        json,
+        {
+          headers: {
+            // "Content-Type": "multipart/form-data"
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log(res.data.data);
     },
 
-    imageHandler(event) {
-      console.log("method: imageHandler");
-      console.log(event);
-      const input = event.target;
-      this.product.productImage = input.files[0].name;
-      console.log(this.product.productImage);
-      // this.product.productImage.push(file);
-      // this.previews.push(URL.createObjectURL(file));
+    // imageHandler(event) {
+    //   console.log("method: imageHandler");
+    //   const input = event.target.files[0];
+    //   this.product.productImage.push(input);
+
+    //   console.log(this.product.productImage);
+    // },
+
+    brandsHandler(selectBrandID) {
+      console.log(parseInt(selectBrandID));
+      let index = this.tempBrands.map(function(e) { console.log(e.brandID); return e.brandID; }).indexOf(parseInt(selectBrandID))
+      console.log(index);
+      this.product.brandID = {
+        brandID: this.tempBrands[index].brandID,
+        brandName: this.tempBrands[index].brandName
+      }
+      console.log(this.product.brandID);
     },
 
     colorHandler(colorID) {
       let isFound = false;
-      for (let index = 0; index < this.product.productColor.length; index++) {
-        if (this.product.productColor[index] === colorID) {
-          this.product.productColor.splice(index, 1);
+      for (let index = 0; index < this.product.colors.length; index++) {
+        if (this.product.colors[index] === colorID) {
+          this.product.colors.splice(index, 1);
           isFound = true;
           break;
         }
       }
       if (isFound === false) {
-        this.product.productColor.push(colorID);
+        this.product.colors.push(colorID);
       }
 
-      console.log("productColor");
-      console.log(this.product.productColor);
-      console.log("length productColor: " + this.product.productColor.length);
+      console.log("--- colorHandler --");
+      console.log(this.product.colors);
+      console.log("length productColor: " + this.product.colors.length);
     },
+  },
+  async created() {
+    // this.tempColors = await axios.get(
+    //   "http://52.187.108.86/backend/colors/getall"
+    // );
+    // console.log(this.tempColors);
+    this.tempBrands = await axios.get(
+      "http://52.187.108.86/backend/brands/getall"
+    );
+    console.log(this.tempBrands);
+    this.tempBrands = this.tempBrands.data
+    console.log(this.tempBrands);
   },
 };
 </script>
