@@ -30,7 +30,12 @@
       />
       <!-- BRAND -->
       <label for="brand" class="brand-heading"> BRAND </label>
-      <select v-model="brandInput" @click="brandsHandler(brandInput)" name="brand" id="brand">
+      <select
+        v-model="brandInput"
+        @click="brandsHandler(brandInput)"
+        name="brand"
+        id="brand"
+      >
         <option value="1">ADIDAS</option>
         <option value="2">CROCS</option>
         <option value="3">FILA</option>
@@ -142,20 +147,23 @@ import axios from "axios";
 export default {
   data() {
     return {
+      backendURL:"http://52.187.108.86/backend",
       productValidate: false,
       brandInput: "",
+      lastProductId: null,
       tempBrands: [],
       tempColors: [],
+      productImageFile: null,
       product: {
+        productID: "",
         productName: "",
         productReleaseDate: "",
         productDetail: "",
         brandID: "",
-        // productImage: [],
+        productImage: "",
         colors: [],
         productPrice: 0,
       },
-      productID: 0,
     };
   },
 
@@ -192,84 +200,75 @@ export default {
     },
 
     async addProduct() {
-      console.log("method: addProduct");
-      // formData
-      // const formData = new FormData();
-      // formData.append("product", JSON.stringify(this.product));
-
-      // await fetch("http://52.187.108.86/backend/products/add", {
-      //     method: "POST",
-      //     headers: {
-      //         "content-type": "application/json",
-      //     },
-      //     body: JSON.stringify(this.product),
-      // }).then(response => {
-      //     return response.json()
-      // })
-
-      const json = this.product;
-      console.log(json);
-      const res = await axios.post(
-        "http://52.187.108.86/backend/products/add",
-        json,
-        {
-          headers: {
-            // "Content-Type": "multipart/form-data"
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      console.log(res.data.data);
+      // let imageName = this.product.productImage
+      this.product.productID = this.lastProductId + 1;
+      this.product.productImage = `${this.product.productID}.png`;
+      await axios.post(`${this.backendURL}/products/add`,this.product)
+      // send image
+      const formData = new FormData();
+      formData.append("file", this.productImageFile);
+      await axios.post(`${this.backendURL}/images/add/${this.product.productImage}`, formData);    
     },
 
-    // imageHandler(event) {
-    //   console.log("method: imageHandler");
-    //   const input = event.target.files[0];
-    //   this.product.productImage.push(input);
-
-    //   console.log(this.product.productImage);
-    // },
+    imageHandler(event) {
+      const input = event.target.files[0];
+      this.productImageFile= input
+    },
 
     brandsHandler(selectBrandID) {
-      console.log(parseInt(selectBrandID));
-      let index = this.tempBrands.map(function(e) { console.log(e.brandID); return e.brandID; }).indexOf(parseInt(selectBrandID))
-      console.log(index);
+      let index = this.tempBrands
+        .map(function (e) {
+          return e.brandID;
+        })
+        .indexOf(parseInt(selectBrandID));
       this.product.brandID = {
         brandID: this.tempBrands[index].brandID,
-        brandName: this.tempBrands[index].brandName
-      }
+        brandName: this.tempBrands[index].brandName,
+      };
       console.log(this.product.brandID);
     },
 
-    colorHandler(colorID) {
-      let isFound = false;
+    colorHandler(selectColorID) {
+      let colorIsExist = this.product.colors.filter(function (e) {
+        return e.colorID == selectColorID;
+      });
+
       for (let index = 0; index < this.product.colors.length; index++) {
-        if (this.product.colors[index] === colorID) {
+        if (this.product.colors[index] == colorIsExist[0]) {
           this.product.colors.splice(index, 1);
-          isFound = true;
-          break;
         }
       }
-      if (isFound === false) {
-        this.product.colors.push(colorID);
+      if (colorIsExist.length === 0) {
+        let index = this.tempColors
+          .map(function (e) {
+            return e.colorID;
+          })
+          .indexOf(selectColorID);
+        this.product.colors.push({
+          colorID: this.tempColors[index].colorID,
+          colorName: this.tempColors[index].colorName,
+        });
       }
-
-      console.log("--- colorHandler --");
       console.log(this.product.colors);
-      console.log("length productColor: " + this.product.colors.length);
     },
   },
   async created() {
-    // this.tempColors = await axios.get(
-    //   "http://52.187.108.86/backend/colors/getall"
-    // );
-    // console.log(this.tempColors);
-    this.tempBrands = await axios.get(
-      "http://52.187.108.86/backend/brands/getall"
+    this.tempColors = await axios.get(
+      `${this.backendURL}/colors/getall`
     );
-    console.log(this.tempBrands);
-    this.tempBrands = this.tempBrands.data
-    console.log(this.tempBrands);
+
+    this.tempBrands = await axios.get(
+      `${this.backendURL}/brands/getall`
+    );
+
+    this.lastProductId = await axios.get(
+      `${this.backendURL}/products/last`
+    );
+    this.lastProductId = this.lastProductId.data[0]
+    console.log(this.lastProductId);
+    this.tempColors = this.tempColors.data;
+    console.log(this.tempColors);
+    this.tempBrands = this.tempBrands.data;
   },
 };
 </script>
