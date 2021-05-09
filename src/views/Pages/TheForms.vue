@@ -133,7 +133,7 @@ export default {
         this.productValidate = true;
         alert("Please enter PRODUCT BRAND.");
       }
-      if (this.product.productImage.length == 0) {
+      if (this.productImageFile == null) {
         this.productValidate = true;
         alert("Please Upload an IMAGE.");
       }
@@ -149,6 +149,8 @@ export default {
     async addProduct() {
       // sent product data
       this.product.productID = this.lastProductId + 1;
+      console.log(this.lastProductId);
+      console.log(this.product.productID);
       this.product.productImage = `${this.product.productID}.png`;
       await axios.post(`${this.backendURL}/products/add`,this.product)
       // send image
