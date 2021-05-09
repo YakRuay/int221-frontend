@@ -185,22 +185,21 @@ export default {
         this.productValidate = true;
         alert("Please enter PRODUCT BRAND.");
       }
-      // if (this.product.productImage.length == 0) {
-      //   this.productValidate = true;
-      //   alert("Please Upload an IMAGE.");
-      // }
+      if (this.product.productImage.length == 0) {
+        this.productValidate = true;
+        alert("Please Upload an IMAGE.");
+      }
       if (this.product.colors.length == 0) {
         this.productValidate = true;
         alert("Please enter PRODUCT COLOR.");
       }
       if (this.productValidate == false) {
-        console.log("productValidate: " + this.productValidate);
         this.addProduct();
       }
     },
 
     async addProduct() {
-      // let imageName = this.product.productImage
+      // sent product data
       this.product.productID = this.lastProductId + 1;
       this.product.productImage = `${this.product.productID}.png`;
       await axios.post(`${this.backendURL}/products/add`,this.product)
@@ -225,7 +224,6 @@ export default {
         brandID: this.tempBrands[index].brandID,
         brandName: this.tempBrands[index].brandName,
       };
-      console.log(this.product.brandID);
     },
 
     colorHandler(selectColorID) {
@@ -249,7 +247,7 @@ export default {
           colorName: this.tempColors[index].colorName,
         });
       }
-      console.log(this.product.colors);
+      // console.log(this.product.colors);
     },
   },
   async created() {
@@ -265,9 +263,9 @@ export default {
       `${this.backendURL}/products/last`
     );
     this.lastProductId = this.lastProductId.data[0]
-    console.log(this.lastProductId);
+    // console.log(this.lastProductId);
     this.tempColors = this.tempColors.data;
-    console.log(this.tempColors);
+    // console.log(this.tempColors);
     this.tempBrands = this.tempBrands.data;
   },
 };
