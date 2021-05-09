@@ -49,6 +49,7 @@ export default {
     },
     async deleteProduct(productID) {
       await axios.delete(`${this.backendURL}/products/${productID}`);
+      location.reload()
     },
   },
 };
