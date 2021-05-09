@@ -1,8 +1,5 @@
 <template>
   <div class="flex flex-col justify-center">
-    <h1>
-      this is from new <b>ViewProduct.vue</b> that run on <b>Product.vue </b>
-    </h1>
     <!-- <button class="bg-red-400 p-5" @click="$emit('changecomp', 'add-product')">
       Edit Product Button > Go to TheForms.vue
     </button>

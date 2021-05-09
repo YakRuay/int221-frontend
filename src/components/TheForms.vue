@@ -491,6 +491,7 @@ h1 {
 }
 
 .save-button:hover {
+  color: whitesmoke;
   background-color: cadetblue;
   border-color: transparent;
   box-shadow: 2px 2px 8px dimgray;

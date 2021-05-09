@@ -31,7 +31,8 @@
                     {{ product.productPrice }} BAHT
                   </li>
                   <ul v-for="color in product.colors" :key="color.colorID">
-                    <li>{{ color.colorName }}</li>
+                    <li :id="'c0'+color.colorID"></li>
+                    <!-- {{ color.colorName }} -->
                   </ul>
                 </div>
 
@@ -98,6 +99,81 @@ li {
   justify-items: center;
 }
 
+button {
+  padding: 2%;
+  border: 2px solid #e5e5e5;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+}
+
+button:hover {
+  /* border: 2px solid rgba(0, 0, 0, 0.25);; */
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+}
+#edit:hover{
+  background-color:darkseagreen;
+}
+#delete:hover{
+  background-color: rgb(204, 57, 57);
+}
+
+.productCards {
+  border: 2px solid #e5e5e5;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+}
+
+.productCards:hover {
+  border: 2px solid rgba(0, 0, 0, 0.25);
+}
+.productImg {
+  margin: 7%;
+  border: 2px solid #e5e5e5;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+}
+
+/* styling Color Results yeahhhhhh I can do this!*/
+#c01{
+  padding: 3%;
+  text-align: center;
+  width: 20%;
+  background-color: black;
+  color: whitesmoke;
+}
+#c02{
+  padding: 3%;
+  text-align: center;
+  width:20%;
+  background-color: gray;
+  color: whitesmoke;
+}
+#c03{
+   text-align: center;
+  color: #81785b;
+
+}
+#c04{
+  width: 20%;
+  text-align: center;
+  color: whitesmoke;
+  background-color:#549a65;
+}
+#c05{
+  width: 20%;
+  text-align: center;
+  background-color:#bf1b2f;
+  color: whitesmoke;
+}
+#c06{
+  width: 20%;
+  text-align: center;
+  color: whitesmoke;
+  background-color:#343e61;
+}
+
+
 /* mobile s and larger sizes responsive*/
 @media (max-width: 426px) {
   .widthOfCards {
@@ -122,6 +198,10 @@ li {
   }
   button img {
     width: 25px;
+  }
+  #c01,#c02,#c03,#c04,#c05,#c06{
+    width: 50px;
+    height: 25px;
   }
 }
 
@@ -202,39 +282,5 @@ li {
   .productImg {
     width: 600px;
   }
-}
-button {
-  padding: 2%;
-  border: 2px solid #e5e5e5;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 20px;
-}
-
-button:hover {
-  /* border: 2px solid rgba(0, 0, 0, 0.25);; */
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 20px;
-}
-#edit:hover{
-  background-color:darkseagreen;
-}
-#delete:hover{
-  background-color: rgb(204, 57, 57);
-}
-
-.productCards {
-  border: 2px solid #e5e5e5;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 20px;
-}
-
-.productCards:hover {
-  border: 2px solid rgba(0, 0, 0, 0.25);
-}
-.productImg {
-  margin: 7%;
-  border: 2px solid #e5e5e5;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 20px;
 }
 </style>

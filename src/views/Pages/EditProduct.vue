@@ -6,7 +6,7 @@
   <!-- <button class="bg-red-400 p-5" @click="backToHomePage">
     "back to ViewProduct"
   </button> -->
-  <the-forms @submit-form="editProduct" :productProp="editingProduct"></the-forms>
+  <the-forms @submit-form="editProduct" :productProp="editingProduct" ></the-forms>
 </template>
 
 <script>
