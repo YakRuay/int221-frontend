@@ -1,11 +1,11 @@
 <template >
-  <h1 class="text-center">
+  <!-- <h1 class="text-center">
     This is our Edit Product page
-  </h1>
-  <h1 class="text-center p-3 font-bold">Edit Product Detail</h1>
-  <button class="bg-red-400 p-5" @click="backToHomePage">
+  </h1> -->
+  <h1 class="text-center p-3 font-bold text-3xl" >Edit Product Detail</h1>
+  <!-- <button class="bg-red-400 p-5" @click="backToHomePage">
     "back to ViewProduct"
-  </button>
+  </button> -->
   <the-forms @submit-form="editProduct" :productProp="editingProduct"></the-forms>
 </template>
 

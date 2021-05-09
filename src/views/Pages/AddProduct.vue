@@ -1,7 +1,5 @@
 <template >
-  <h1 class="text-center">This is our Add Product page</h1>
-  <button class="bg-red-400 p-5" @click="backToHomePage">
-    "back to ViewProduct" </button>
+  <!-- <h1 class="text-center">This is our Add Product page</h1> -->
   <the-forms @submit-form="addProduct" :productProp="addingProduct"></the-forms>
 </template>
 

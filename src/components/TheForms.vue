@@ -30,12 +30,18 @@
       <!-- BRAND -->
       <label for="brand" class="brand-heading"> BRAND </label>
       <select
-        v-model="brandInput"
+        :value="product.brandID.brandID"
         @change="brandsHandler(brandInput)"
         name="brand"
         id="brand"
       >
-        <option v-for="brand in tempBrands" v-bind:key="brand.brandID" :value="brand.brandID">{{brand.brandName}}</option>
+        <option
+          v-for="brand in tempBrands"
+          v-bind:key="brand.brandID"
+          :value="brand.brandID"
+        >
+          {{ brand.brandName }}
+        </option>
       </select>
       <!-- IMAGE -->
       <div class="image-upload">
@@ -58,15 +64,23 @@
       <div class="flex flex-col p-3 pl-0">
         <span id="colors-heading">COLORS</span>
         <div class="for-nextLine flex flex-row">
-          <label v-for="color in tempColors" v-bind:key="color.colorID" class="container">
+          <label
+            v-for="color in tempColors"
+            v-bind:key="color.colorID"
+            class="container"
+          >
             <input
+              :checked="colorIsChecked(color)"
               @click="colorHandler(color.colorID)"
               type="checkbox"
               id="{{color.colorName.toLowerCase()}}"
               name="colors"
               value="{{color.colorName.toLowerCase()}}"
             />
-            <span class="checkmark" :class="color.colorName.toLowerCase()"></span>
+            <span
+              class="checkmark"
+              :class="color.colorName.toLowerCase()"
+            ></span>
           </label>
         </div>
       </div>
@@ -82,7 +96,7 @@
       />
       <!-- SUBMIT -->
       <div class="flex justify-end">
-        <input type="submit" value="Save" class="save-button" />
+        <input type="submit" value="Save" class="save-button" @click="backToHomePage" />
       </div>
     </form>
   </div>
@@ -92,24 +106,29 @@
 import axios from "axios";
 
 export default {
+  mounted() {
+    console.log(this.product);
+    // this.setImage()
+  },
   props: {
-    productProp: Object
+    productProp: Object,
   },
   data() {
     return {
-      backendURL:"http://52.187.108.86/backend",
+      backendURL: "http://52.187.108.86/backend",
       productValidate: false,
       brandInput: "",
       lastProductId: null,
       tempBrands: [],
       tempColors: [],
       productImageFile: null,
-      product: Object
+      currentImage: null,
+      product: Object,
     };
   },
   methods: {
     validateForm() {
-      this.productValidate = false
+      this.productValidate = false;
       if (this.product.productName == "") {
         this.productValidate = true;
         alert("Please enter PRODUCT NAME.");
@@ -140,12 +159,17 @@ export default {
     },
 
     async submitForm() {
-      this.$emit('submit-form', this.product, this.productImageFile, this.lastProductId)
+      this.$emit(
+        "submit-form",
+        this.product,
+        this.productImageFile,
+        this.lastProductId
+      );
     },
 
     imageHandler(event) {
       const input = event.target.files[0];
-      this.productImageFile = input
+      this.productImageFile = input;
     },
 
     brandsHandler(selectBrandID) {
@@ -183,21 +207,39 @@ export default {
       }
       // console.log(this.product.colors);
     },
+    colorIsChecked(color) {
+      const selected = this.product.colors.filter(
+        (item) => item.colorID === color.colorID
+      );
+      console.log(" selected: ", selected);
+      if (selected.length > 0) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    // async setImage() {
+    //   const res = await fetch(
+    //     this.backendURL + "/images/get/" + this.product.productImage
+    //   );
+    //   const blob = await res.blob();
+    //   if (blob) {
+    //     const file = new File([blob], this.product.productImage, {
+    //       type: "image/png",
+    //     });
+    //     this.currentImage = file;
+    //     console.log(file)
+    //   }
+    // },
   },
   async created() {
-    this.product = this.productProp
-    this.tempColors = await axios.get(
-      `${this.backendURL}/colors/getall`
-    );
+    this.product = this.productProp;
+    this.tempColors = await axios.get(`${this.backendURL}/colors/getall`);
 
-    this.tempBrands = await axios.get(
-      `${this.backendURL}/brands/getall`
-    );
+    this.tempBrands = await axios.get(`${this.backendURL}/brands/getall`);
 
-    this.lastProductId = await axios.get(
-      `${this.backendURL}/products/last`
-    );
-    this.lastProductId = this.lastProductId.data[0]
+    this.lastProductId = await axios.get(`${this.backendURL}/products/last`);
+    this.lastProductId = this.lastProductId.data[0];
     // console.log(this.lastProductId);
     this.tempColors = this.tempColors.data;
     // console.log(this.tempColors);
@@ -441,8 +483,8 @@ h1 {
   margin-top: 7%;
   margin-bottom: 0%;
   width: 75px;
-  color: white;
-  background: #10b981;
+  color: black;
+  background: darkseagreen;
   border-radius: 5px;
   border-color: transparent;
   cursor: pointer;
