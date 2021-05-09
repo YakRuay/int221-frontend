@@ -61,65 +61,13 @@
       <div class="flex flex-col p-3 pl-0">
         <span id="colors-heading">COLORS</span>
         <div class="for-nextLine flex flex-row">
-          <label class="container">
+          <label v-for="color in tempColors" v-bind:key="color.colorID" class="container">
             <input
-              @click="colorHandler(1)"
+              @click="colorHandler(color.colorID)"
               type="checkbox"
-              id="black"
               name="colors"
-              value="black"
             />
-            <span class="checkmark black"></span>
-          </label>
-          <label class="container">
-            <input
-              @click="colorHandler(2)"
-              type="checkbox"
-              id="white"
-              name="colors"
-              value="white"
-            />
-            <span class="checkmark white"></span>
-          </label>
-          <label class="container">
-            <input
-              @click="colorHandler(3)"
-              type="checkbox"
-              id="brownish"
-              name="colors"
-              value="brownish"
-            />
-            <span class="checkmark brownish"></span>
-          </label>
-          <label class="container">
-            <input
-              @click="colorHandler(4)"
-              type="checkbox"
-              id="green"
-              name="colors"
-              value="green"
-            />
-            <span class="checkmark green"></span>
-          </label>
-          <label class="container">
-            <input
-              @click="colorHandler(5)"
-              type="checkbox"
-              id="cardinal"
-              name="colors"
-              value="cardinal"
-            />
-            <span class="checkmark cardinal"></span>
-          </label>
-          <label class="container">
-            <input
-              @click="colorHandler(6)"
-              type="checkbox"
-              id="rhino"
-              name="colors"
-              value="rhino"
-            />
-            <span class="checkmark rhino"></span>
+            <span class="checkmark" :class="color.colorName.toLowerCase()"></span>
           </label>
         </div>
       </div>
@@ -265,7 +213,7 @@ export default {
     this.lastProductId = this.lastProductId.data[0]
     // console.log(this.lastProductId);
     this.tempColors = this.tempColors.data;
-    // console.log(this.tempColors);
+    console.log(this.tempColors);
     this.tempBrands = this.tempBrands.data;
   },
 };
