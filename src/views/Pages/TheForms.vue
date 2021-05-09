@@ -1,4 +1,4 @@
-<template >
+<template>
   <h1>This is our Forms page <b> TheForms.vue</b></h1>
   <div class="p-3 flex justify-center w-screen">
     <form @submit.prevent="validateForm" class="for-forms">
@@ -32,13 +32,11 @@
       <label for="brand" class="brand-heading"> BRAND </label>
       <select
         v-model="brandInput"
-        @click="brandsHandler(brandInput)"
+        @change="brandsHandler(brandInput)"
         name="brand"
         id="brand"
       >
-        <option value="1">ADIDAS</option>
-        <option value="2">CROCS</option>
-        <option value="3">FILA</option>
+        <option v-for="brand in tempBrands" v-bind:key="brand.brandID" :value="brand.brandID">{{brand.brandName}}</option>
       </select>
       <!-- IMAGE -->
       <div class="image-upload">
@@ -65,7 +63,9 @@
             <input
               @click="colorHandler(color.colorID)"
               type="checkbox"
+              id="{{color.colorName.toLowerCase()}}"
               name="colors"
+              value="{{color.colorName.toLowerCase()}}"
             />
             <span class="checkmark" :class="color.colorName.toLowerCase()"></span>
           </label>
@@ -213,8 +213,9 @@ export default {
     this.lastProductId = this.lastProductId.data[0]
     // console.log(this.lastProductId);
     this.tempColors = this.tempColors.data;
-    console.log(this.tempColors);
+    // console.log(this.tempColors);
     this.tempBrands = this.tempBrands.data;
+    // console.log(this.tempBrands);
   },
 };
 </script>
