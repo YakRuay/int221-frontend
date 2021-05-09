@@ -24,8 +24,7 @@
       <component :is="selectedComponent"></component>
     </keep-alive>
    
-    <ProductCard v-bind:productList="productList"> 
-    </ProductCard>
+    <ProductCard v-bind:productList="productList" @change-to-edit="changeToEdit"/>
   </div>
 </template>
 
@@ -33,7 +32,7 @@
 <script>
 import axios from "axios";
 
-import EditProduct from "@/views/Pages/TheFormsEdit.vue";
+import EditProduct from "@/views/Pages/EditProduct.vue";
 
 export default {
   components: {
@@ -48,6 +47,9 @@ export default {
     };
   },
   methods: {
+    changeToEdit(componentName, product) {
+      this.$emit("changecomp", componentName, product)
+    }, 
     setSelectedComponent(comp) {
       this.selectedComponent = comp;
     },
@@ -55,9 +57,7 @@ export default {
   async created() {
     this.productList = await axios.get(`${this.backendURL}/products/getall`);
     this.productList = this.productList.data;
-    console.log(this.productList);
-
- 
+    // console.log(this.productList);
   },
 };
 </script>

@@ -6,35 +6,39 @@
       <div :class="{'font-bold':selectedComponent==='view-product'}" class="Target" @click="setSelectedComponent('view-product')">View&nbsp;Products</div>
       <div :class="{'font-bold':selectedComponent==='add-product'}" class="Target" @click="setSelectedComponent('add-product')" id="AddProduct">Add&nbsp;Product</div>
       <!-- <a href="#" id="EditProduct">Edit&nbsp;Product</a> -->
-    <button class="Target" @click="setSelectedComponent('edit-products')" id="EditProducts">Edit&nbsp;Products02</button>
+    <!-- <button class="Target" @click="setSelectedComponent('edit-products')" id="EditProducts">Edit&nbsp;Products02</button> -->
 
     </div>
   </div>
   <keep-alive>
-        <component :is="selectedComponent" @changecomp="setSelectedComponent"></component>
+        <component :is="selectedComponent" @changecomp="setSelectedComponent" :editingProduct="editingProduct"></component>
   </keep-alive>
 
 </template>
 
 <script>
 import ViewProduct from "../views/Pages/ViewProduct.vue";
-import AddProduct from "../views/Pages/TheForms.vue";
-import EditProducts from "../views/Pages/TheFormsEdit.vue";
+import AddProduct from "../views/Pages/AddProduct.vue";
+import EditProducts from "../views/Pages/EditProduct.vue";
  
 export default {
   components: {
     ViewProduct,
     AddProduct,
-    EditProducts,
+    EditProducts
   },
   data() {
     return {
       selectedComponent: "view-product",
+      editingProduct: Object
     }
   },
   methods: {
     setSelectedComponent(comp) {
       this.selectedComponent = comp;
+      if (comp === 'edit-products') {
+        this.editingProduct = arguments[1]
+      }
     },
   },
  

@@ -1,5 +1,4 @@
 <template>
-  <h1>This is our Forms page <b> TheForms.vue</b></h1>
   <div class="p-3 flex justify-center w-screen">
     <form @submit.prevent="validateForm" class="for-forms">
       <!-- PRODUCT NAME -->
@@ -93,6 +92,9 @@
 import axios from "axios";
 
 export default {
+  props: {
+    productProp: Object
+  },
   data() {
     return {
       backendURL:"http://52.187.108.86/backend",
@@ -102,21 +104,12 @@ export default {
       tempBrands: [],
       tempColors: [],
       productImageFile: null,
-      product: {
-        productID: "",
-        productName: "",
-        productReleaseDate: "",
-        productDetail: "",
-        brandID: "",
-        productImage: "",
-        colors: [],
-        productPrice: 0,
-      },
+      product: Object
     };
   },
-
   methods: {
     validateForm() {
+      this.productValidate = false
       if (this.product.productName == "") {
         this.productValidate = true;
         alert("Please enter PRODUCT NAME.");
@@ -142,26 +135,17 @@ export default {
         alert("Please enter PRODUCT COLOR.");
       }
       if (this.productValidate == false) {
-        this.addProduct();
+        this.submitForm();
       }
     },
 
-    async addProduct() {
-      // sent product data
-      this.product.productID = this.lastProductId + 1;
-      console.log(this.lastProductId);
-      console.log(this.product.productID);
-      this.product.productImage = `${this.product.productID}.png`;
-      await axios.post(`${this.backendURL}/products/add`,this.product)
-      // send image
-      const formData = new FormData();
-      formData.append("file", this.productImageFile);
-      await axios.post(`${this.backendURL}/images/add/${this.product.productImage}`, formData);    
+    async submitForm() {
+      this.$emit('submit-form', this.product, this.productImageFile, this.lastProductId)
     },
 
     imageHandler(event) {
       const input = event.target.files[0];
-      this.productImageFile= input
+      this.productImageFile = input
     },
 
     brandsHandler(selectBrandID) {
@@ -201,6 +185,7 @@ export default {
     },
   },
   async created() {
+    this.product = this.productProp
     this.tempColors = await axios.get(
       `${this.backendURL}/colors/getall`
     );

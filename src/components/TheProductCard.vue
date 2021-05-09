@@ -12,13 +12,16 @@
         <ul v-for="color in product.colors" :key="color.colorID">
           <li>{{ color.colorName }}</li>
         </ul>
-        <button class="inline-block px-8 py-2 mr-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600 focus:shadow-outline focus:outline-none focus:ring-2 ring-offset-current ring-offset-2"
-                            @click="editProduct">
-                            Edit
-                        </button>
+        <button
+          class="inline-block px-8 py-2 mr-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600 focus:shadow-outline focus:outline-none focus:ring-2 ring-offset-current ring-offset-2"
+          @click="$emit('change-to-edit', 'edit-products', product)"
+        >
+          Edit
+        </button>
         <button
           class="inline-block px-8 py-2 text-white bg-red-500 rounded-lg hover:bg-red-600 focus:shadow-outline focus:outline-none focus:ring-2 ring-offset-current ring-offset-2"
-        @click="deleteProduct(product.productID)">
+          @click="deleteProduct(product.productID)"
+        >
           Delete
         </button>
       </ul>
@@ -27,7 +30,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 
 export default {
   name: "ProductCard",
@@ -44,13 +47,9 @@ export default {
     getImage(imgname) {
       return `${this.backendURL}/images/get/${imgname}`;
     },
-    editProduct() {
-
-    },
     async deleteProduct(productID) {
-      await axios.delete(`${this.backendURL}/products/${productID}`)
-    }
-    
+      await axios.delete(`${this.backendURL}/products/${productID}`);
+    },
   },
 };
 </script>
