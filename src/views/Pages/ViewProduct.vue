@@ -23,7 +23,9 @@
     <keep-alive>
       <component :is="selectedComponent"></component>
     </keep-alive>
-    <ProductCard :test="test" v-bind:productList="productList"> </ProductCard>
+   
+    <ProductCard v-bind:productList="productList"> 
+    </ProductCard>
   </div>
 </template>
 
@@ -42,7 +44,6 @@ export default {
       backendURL: "http://52.187.108.86/backend",
       selectedComponent: null,
       productList: [],
-      productImageFiles: null,
       test: "String test",
     };
   },
@@ -50,16 +51,13 @@ export default {
     setSelectedComponent(comp) {
       this.selectedComponent = comp;
     },
-
-    async getProductImageFiles() {
-
-    }
   },
   async created() {
     this.productList = await axios.get(`${this.backendURL}/products/getall`);
     this.productList = this.productList.data;
     console.log(this.productList);
-    this.getProductImageFiles();
+
+ 
   },
 };
 </script>
