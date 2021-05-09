@@ -13,12 +13,6 @@
       <button @click="setSelectedComponent('edit-product')" id="EditProduct">Edit&nbsp;Product</button> 
       </div>-->
 
-    <button
-      class="bg-red-500 p-5"
-      @click="$emit('changecomp', 'edit-products')"
-    >
-      Go to Hidden Update Form
-    </button>
 
     <keep-alive>
       <component :is="selectedComponent"></component>
