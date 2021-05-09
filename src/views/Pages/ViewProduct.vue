@@ -23,17 +23,7 @@
     <keep-alive>
       <component :is="selectedComponent"></component>
     </keep-alive>
-    <div>
-      <ul v-for="product in productList" :key="product.productID">
-        <li>{{product.productName}}</li>
-        <li>{{product.productDetail}}</li>
-        <li>{{product.productReleaseDate}}</li>
-        <li>{{product.productPrice}}</li>
-        <li>{{product.brandID}}</li>
-        <li>{{product.productPrice}}</li>
-        <li>{{product.colors}}</li>
-      </ul>
-    </div>
+    <ProductCard :test="test" v-bind:productList="productList"> </ProductCard>
   </div>
 </template>
 
@@ -52,7 +42,8 @@ export default {
       backendURL: "http://52.187.108.86/backend",
       selectedComponent: null,
       productList: [],
-      // productImageFiles: null,
+      productImageFiles: null,
+      test: "String test",
     };
   },
   methods: {
@@ -60,15 +51,15 @@ export default {
       this.selectedComponent = comp;
     },
 
-    // async getProductImageFiles() {
-      
-    // }
+    async getProductImageFiles() {
+
+    }
   },
   async created() {
     this.productList = await axios.get(`${this.backendURL}/products/getall`);
     this.productList = this.productList.data;
     console.log(this.productList);
-    // this.getProductImageFiles();
+    this.getProductImageFiles();
   },
 };
 </script>
