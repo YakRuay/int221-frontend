@@ -2,7 +2,7 @@
   <div
     class="bg-black p-5 md:text-xl text-sm text-gray-100 flex justify-center navbar-container"
   >
-    <div class="md:w-2/5 flex justify-between uppercase">
+    <div class="md:w-2/5 flex justify-between uppercase width-setting">
       <router-link to="/">Product</router-link>
       <router-link to="/about-us">About&nbsp;Us</router-link>
       <router-link to="/team">Team</router-link>
@@ -11,6 +11,12 @@
 </template>
 
 <style scoped>
+@media (width:768px) {
+  .width-setting{
+    justify-content: center;
+  }
+}
+
 .navbar-container {
   min-width: 100vw;
   overflow: hidden;

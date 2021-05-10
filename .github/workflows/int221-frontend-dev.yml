@@ -1,8 +1,7 @@
 name: int221-frontend-dev
-
 on:
   push:
-    branches;
+    branches:
       - dev
 
 jobs:
@@ -12,7 +11,6 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-
     
     - name: Login to Github Docker Registry
       uses: docker/login-action@v1
@@ -29,21 +27,20 @@ jobs:
 
   deploy:
     needs: build
-    runs-on:ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: get-credentials
-      uses: azure/login@v1
+    - name: Execute deploy SSH commmands on remote server
+      uses: JimCronqvist/action-ssh@master
       with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-    - name: deloy
-      uses: azure/aci-deploy@v1
-      with:
-        resource-group: INT221_PROJECT
-        dns-name-label: ${{ secrets.RESOURCE_GROUP }}${{ github.run_number }}
-        image: ghcr.io/yakruay/int221-frontend:dev
-        name: int221-frontend
-        location: 'Southeast Asia'
+        hosts: 'rew@52.187.108.86'
+        privateKey: ${{ secrets.PRIVATE_KEY }}
+        command: |
+          cd int221-frontend
+          git checkout dev
+          git pull
+          docker pull ghcr.io/yakruay/int221-frontend:dev
+          docker-compose down
+          docker-compose up -d

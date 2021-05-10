@@ -1,6 +1,6 @@
 <template class="h-screen w-screen">
   <div id="member-Rew" class="CardData">
-    <the-member-card class="block">
+    <the-member-card>
       <img src="@/assets/TeamImgs/059-Pongsathorn-Rew.jpg" />
       <div class="texts-content">
         <h1>นายพงศธร พิชัยยุทธ์</h1>
