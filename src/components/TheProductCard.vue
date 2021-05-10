@@ -30,23 +30,22 @@
                     <b class="text-lg text-gray-900">PRICE:</b>
                     {{ product.productPrice }} BAHT
                   </li>
-                  <ul v-for="color in product.colors" :key="color.colorID">
-                    <li :id="'c0'+color.colorID"></li>
+                  <ul v-for="color in product.colors" :key="color.colorID" class="flex flex-row">
+                    <li :id="'c0' + color.colorID"></li>
                     <!-- {{ color.colorName }} -->
                   </ul>
                 </div>
 
                 <div class="flex flex-row p-5 button-align">
-                  <button id="edit"
+                  <button
+                    id="edit"
                     class="w-20 flex justify-center"
                     @click="$emit('change-to-edit', 'edit-products', product)"
                   >
-                    <img
-                      src="../assets/ProductImgs/edit.png"
-                      class="w-9"
-                    />
+                    <img src="../assets/ProductImgs/edit.png" class="w-9" />
                   </button>
-                  <button id="delete"
+                  <button
+                    id="delete"
                     class="w-20 flex justify-center"
                     @click="deleteProduct(product.productID)"
                   >
@@ -111,10 +110,10 @@ button:hover {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 20px;
 }
-#edit:hover{
-  background-color:darkseagreen;
+#edit:hover {
+  background-color: darkseagreen;
 }
-#delete:hover{
+#delete:hover {
   background-color: rgb(204, 57, 57);
 }
 
@@ -135,44 +134,51 @@ button:hover {
 }
 
 /* styling Color Results yeahhhhhh I can do this!*/
-#c01{
+#c01 {
   padding: 3%;
   text-align: center;
   width: 20%;
   background-color: black;
   color: whitesmoke;
 }
-#c02{
+#c02 {
+  border:1px solid ;
+  border-color:black;
   padding: 3%;
   text-align: center;
-  width:20%;
-  background-color: gray;
+  width: 20%;
+  background-color: white;
   color: whitesmoke;
 }
-#c03{
-   text-align: center;
-  color: #81785b;
-
+#c03 {
+  padding: 3%;
+  width: 20%;
+  text-align: center;
+  text-align: center;
+  background-color: #81785b;
+  color: whitesmoke;
 }
-#c04{
+#c04 {
+  padding: 3%;
   width: 20%;
   text-align: center;
   color: whitesmoke;
-  background-color:#549a65;
+  background-color: #549a65;
 }
-#c05{
+#c05 {
+  padding: 3%;
   width: 20%;
   text-align: center;
-  background-color:#bf1b2f;
+  background-color: #bf1b2f;
   color: whitesmoke;
 }
-#c06{
+#c06 {
+  padding: 3%;
   width: 20%;
   text-align: center;
   color: whitesmoke;
-  background-color:#343e61;
+  background-color: #343e61;
 }
-
 
 /* mobile s and larger sizes responsive*/
 @media (max-width: 426px) {
@@ -199,7 +205,12 @@ button:hover {
   button img {
     width: 25px;
   }
-  #c01,#c02,#c03,#c04,#c05,#c06{
+  #c01,
+  #c02,
+  #c03,
+  #c04,
+  #c05,
+  #c06 {
     width: 50px;
     height: 25px;
   }
