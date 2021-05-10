@@ -16,6 +16,15 @@
             <b> Database </b> <br />
             Handles all related Database works.
           </span>
+          <span>
+            <br/>
+            <b> Back-end </b> <br /> QCs all back-end works.
+          </span>
+          <span>
+            <br />
+            <b> Front-end </b> <br /> Refactors Codes and works on business logic scripts.
+            <br />
+          </span>
         </p>
       </div>
     </the-member-card>
@@ -31,7 +40,7 @@
           <b class="respons"> Responsibilities </b>
           <span>
             <br />
-            <b>Front-end </b> <br />Works on all Front-end, design and
+            <b>Front-end </b> <br />Works on all Front-end, UX/UI design and
             responsive tasks.
           </span>
         </p>
@@ -49,12 +58,15 @@
           <b class="respons"> Responsibilities </b>
           <span>
             <br />
-            <b>Back-end </b> <br />Does all works about Back-end part</span
+            <b>Back-end </b> <br />Does all works about Back-end parts.</span
           >
           <span>
             <br />
             <b> Database </b> <br />
-            Helps on Database diagram design
+            Helps on Database diagram design.
+          </span>
+          <span>
+            <br/> <b> Front-end </b> <br/> Deals on all scripts. 
           </span>
         </p>
       </div>
@@ -105,6 +117,7 @@ img {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 20px;
   width: 150px;
+  height: min-content;
 }
 
 /* responsive for mobile s and larger*/
