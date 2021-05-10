@@ -30,7 +30,7 @@
       <!-- BRAND -->
       <label for="brand" class="brand-heading"> BRAND </label>
       <select
-        :value="product.brandID.brandID"
+        v-model="brandInput"
         @change="brandsHandler(brandInput)"
         name="brand"
         id="brand"
@@ -106,8 +106,10 @@
 import axios from "axios";
 
 export default {
-  mounted() {
+  activated() {
     console.log(this.product);
+    this.product = this.productProp;
+    this.brandInput = this.product.brandID.brandID
     // this.setImage()
   },
   props: {
@@ -205,13 +207,12 @@ export default {
           colorName: this.tempColors[index].colorName,
         });
       }
-      // console.log(this.product.colors);
     },
     colorIsChecked(color) {
       const selected = this.product.colors.filter(
         (item) => item.colorID === color.colorID
       );
-      console.log(" selected: ", selected);
+      // console.log(" selected: ", selected);
       if (selected.length > 0) {
         return true;
       } else {
